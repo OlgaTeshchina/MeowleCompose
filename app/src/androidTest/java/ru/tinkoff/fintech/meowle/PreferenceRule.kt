@@ -7,13 +7,29 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 class PreferenceRule : TestRule {
+
+    private var useCompose = false
+    private var useMock = false
+
+    constructor(useCompose: Boolean, useMocks: Boolean) {
+        this.useCompose = useCompose
+        this.useMock = useMocks
+    }
+
+    constructor() {}
+
     override fun apply(base: Statement, p1: Description): Statement {
         return object : Statement() {
             override fun evaluate() {
                 println("TestRule Before Test")
                 putAuthParam()
-                //mode()
-                putUrl()
+
+                if (useCompose)
+                    mode()
+
+                if (useMock)
+                    putUrl()
+
                 base.evaluate() // our test works here
                 cleanPrefs()
                 println("TestRule After Test")
@@ -53,4 +69,3 @@ class PreferenceRule : TestRule {
             .commit()
     }
 }
-

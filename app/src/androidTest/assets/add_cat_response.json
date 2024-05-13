@@ -1,0 +1,11 @@
+{
+  "cats": [{
+    "id": 20532,
+    "name": "Жужик",
+    "description": "Котик",
+    "tags": null,
+    "gender": "female",
+    "likes": 0,
+    "dislikes": 0
+  }]
+}

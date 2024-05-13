@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "title": "Й",
+      "cats": [
+        {
+          "id": 17888,
+          "name": "Йокульчик",
+          "description": "Самый милый котик из всех котиков",
+          "tags": null,
+          "gender": "female",
+          "likes": 9,
+          "dislikes": 0
+        },
+        {
+          "id": 17884,
+          "name": "Йокитич",
+          "description": "Самый милый котик",
+          "tags": null,
+          "gender": "female",
+          "likes": 0,
+          "dislikes": 0
+        },
+        {
+          "id": 17881,
+          "name": "Йокичан",
+          "description": "Самый милый котик",
+          "tags": null,
+          "gender": "female",
+          "likes": 1,
+          "dislikes": 0
+        },
+        {
+          "id": 17896,
+          "name": "Йокиют",
+          "description": "Самый милый котик",
+          "tags": null,
+          "gender": "female",
+          "likes": 0,
+          "dislikes": 0
+        }
+      ],
+      "count": 4
+    }
+  ],
+  "count": 4
+}

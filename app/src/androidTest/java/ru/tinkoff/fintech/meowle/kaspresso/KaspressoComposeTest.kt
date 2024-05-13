@@ -18,7 +18,7 @@ class KaspressoComposeTest  : TestCase(
 ) {
 
     @get:Rule
-    val prefs = PreferenceRule()
+    val prefs = PreferenceRule(useCompose = false, useMocks = true)
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()
