@@ -16,7 +16,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.github.tomakehurst.wiremock.stubbing.Scenario
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.R
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
@@ -28,7 +28,7 @@ import java.lang.Thread.sleep
 class WireMockTest {
 
     @get:Rule
-    val prefs = PreferenceRuleKaspresso()
+    val prefs = PreferenceRule(useCompose = false, useMocks = true)
 
     @get: Rule
     val mock = WireMockRule(5000)

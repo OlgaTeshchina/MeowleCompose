@@ -13,7 +13,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
 import com.github.tomakehurst.wiremock.stubbing.Scenario
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeDetailsScreen
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeRatingScreen
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeTabBarElement
@@ -23,7 +23,7 @@ import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 class ComposeLikeTopCatTest {
 
     @get:Rule
-    val prefs = PreferenceRuleCompose()
+    val prefs = PreferenceRule(true, true)
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

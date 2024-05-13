@@ -10,7 +10,7 @@ import io.qameta.allure.kotlin.junit4.DisplayName
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.screens.kaspresso.KaspressoSearchScreen
 
@@ -23,7 +23,7 @@ import ru.tinkoff.fintech.meowle.screens.kaspresso.KaspressoSearchScreen
 class AllureExampleTest {
 
     @get:Rule
-    val prefs = PreferenceRuleKaspresso()
+    val prefs = PreferenceRule(useCompose = false, useMocks = true)
 
     @get:Rule
     val activityScenarioRule = activityScenarioRule<MainActivity>()

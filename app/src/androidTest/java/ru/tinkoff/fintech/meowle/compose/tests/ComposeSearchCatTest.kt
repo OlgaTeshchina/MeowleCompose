@@ -8,7 +8,7 @@ import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeSearchScreen
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
@@ -16,7 +16,7 @@ import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 class ComposeSearchCatTest {
 
     @get:Rule
-    val prefs = PreferenceRuleCompose()
+    val prefs = PreferenceRule(true, true)
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

@@ -11,7 +11,7 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.github.tomakehurst.wiremock.stubbing.Scenario
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeDetailsScreen
 import ru.tinkoff.fintech.meowle.compose.screens.ComposeSearchScreen
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
@@ -23,7 +23,7 @@ class ComposeTransitionToDetailsTest {
     val mock = WireMockRule(5000)
 
     @get:Rule
-    val prefs = PreferenceRuleCompose()
+    val prefs = PreferenceRule(true, true)
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

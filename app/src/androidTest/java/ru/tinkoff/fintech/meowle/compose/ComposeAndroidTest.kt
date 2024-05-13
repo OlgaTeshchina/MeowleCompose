@@ -15,7 +15,7 @@ import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performTextInput
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 
 /**
@@ -24,7 +24,7 @@ import ru.tinkoff.fintech.meowle.presentation.MainActivity
 class ComposeAndroidTest {
 
     @get:Rule
-    val prefs = PreferenceRuleCompose()
+    val prefs = PreferenceRule(true, true)
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

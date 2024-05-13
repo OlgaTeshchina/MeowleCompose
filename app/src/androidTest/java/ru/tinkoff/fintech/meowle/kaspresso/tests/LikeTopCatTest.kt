@@ -6,7 +6,6 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.kaspresso.screens.DetailsScreen
 import ru.tinkoff.fintech.meowle.kaspresso.screens.RatingScreen
@@ -18,12 +17,13 @@ import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
 import com.github.tomakehurst.wiremock.client.WireMock.verify
 import com.github.tomakehurst.wiremock.stubbing.Scenario
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 
 class LikeTopCatTest : TestCase() {
 
     @get: Rule
-    val prefs = PreferenceRuleKaspresso()
+    val prefs = PreferenceRule(useCompose = false, useMocks = true)
 
     @get: Rule
     val mock = WireMockRule(5000)

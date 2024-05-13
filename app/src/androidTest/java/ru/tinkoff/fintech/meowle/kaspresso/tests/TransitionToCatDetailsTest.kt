@@ -12,7 +12,7 @@ import com.github.tomakehurst.wiremock.stubbing.Scenario
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
+import ru.tinkoff.fintech.meowle.PreferenceRule
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.kaspresso.screens.DetailsScreen
 import ru.tinkoff.fintech.meowle.kaspresso.screens.SearchCatsScreen
@@ -21,7 +21,7 @@ import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 class TransitionToCatDetailsTest : TestCase() {
 
     @get: Rule
-    val prefs = PreferenceRuleKaspresso()
+    val prefs = PreferenceRule(useCompose = false, useMocks = true)
 
     @get: Rule
     val mock = WireMockRule(5000)

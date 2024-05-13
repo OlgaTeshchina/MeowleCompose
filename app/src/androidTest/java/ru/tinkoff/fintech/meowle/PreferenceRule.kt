@@ -7,12 +7,30 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 class PreferenceRule : TestRule {
+
+    private var useCompose = false
+    private var useMock = false
+
+    constructor(useCompose: Boolean, useMocks: Boolean) {
+        this.useCompose = useCompose
+        this.useMock = useMocks
+    }
+
+    constructor() {}
+
     override fun apply(base: Statement, p1: Description): Statement {
         return object : Statement() {
             override fun evaluate() {
                 println("TestRule Before Test")
                 putAuthParam()
-                base.evaluate()
+
+                if (useCompose)
+                    mode()
+
+                if (useMock)
+                    putUrl()
+
+                base.evaluate() // our test works here
                 cleanPrefs()
                 println("TestRule After Test")
             }
@@ -24,6 +42,22 @@ class PreferenceRule : TestRule {
             .getSharedPreferences("meowle", Context.MODE_PRIVATE)
             .edit()
             .putBoolean("auth", true)
+            .commit()
+    }
+
+    private fun putUrl() {
+        InstrumentationRegistry.getInstrumentation().targetContext
+            .getSharedPreferences("meowle", Context.MODE_PRIVATE)
+            .edit()
+            .putString("url", "http://localhost:5000")
+            .commit()
+    }
+
+    private fun mode() {
+        InstrumentationRegistry.getInstrumentation().targetContext
+            .getSharedPreferences("meowle", Context.MODE_PRIVATE)
+            .edit()
+            .putString("launch_mode", "COMPOSE")
             .commit()
     }
 
