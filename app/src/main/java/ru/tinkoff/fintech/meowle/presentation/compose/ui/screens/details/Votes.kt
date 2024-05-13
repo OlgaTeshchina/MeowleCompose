@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.tinkoff.fintech.meowle.presentation.compose.ui.mirror
@@ -54,7 +55,8 @@ fun VoteElement(
             colors = IconButtonDefaults.iconButtonColors(
                 contentColor = MaterialTheme.colorScheme.onPrimary,
                 disabledContentColor = MaterialTheme.colorScheme.primary
-            )
+            ),
+            modifier = Modifier.testTag("likeCatBtn")
         ) {
             Icon(
                 imageVector = Icons.Default.ThumbUp,
@@ -66,7 +68,9 @@ fun VoteElement(
         Text(
             text = votes.toString(),
             style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = modifier
+                .testTag("catCountLikes")
         )
     }
 }

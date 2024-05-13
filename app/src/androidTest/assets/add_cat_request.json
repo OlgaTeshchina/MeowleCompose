@@ -1,0 +1,7 @@
+{
+  "cats": [{
+    "description": "Котик",
+    "gender": "female",
+    "name": "Жужик"
+  }]
+}

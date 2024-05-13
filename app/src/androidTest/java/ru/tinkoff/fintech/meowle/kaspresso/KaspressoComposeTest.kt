@@ -6,7 +6,7 @@ import com.kaspersky.kaspresso.kaspresso.Kaspresso
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRule
+import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.screens.kaspresso.KaspressoComposeSearchScreen
 
@@ -18,7 +18,7 @@ class KaspressoComposeTest  : TestCase(
 ) {
 
     @get:Rule
-    val prefs = PreferenceRule()
+    val prefs = PreferenceRuleKaspresso()
 
     @get:Rule
     val composeTestRule = createAndroidComposeRule<MainActivity>()

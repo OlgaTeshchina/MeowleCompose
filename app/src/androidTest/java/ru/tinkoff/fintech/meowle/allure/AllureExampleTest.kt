@@ -2,7 +2,6 @@ package ru.tinkoff.fintech.meowle.allure
 
 import androidx.test.ext.junit.rules.activityScenarioRule
 import io.qameta.allure.android.runners.AllureAndroidJUnit4
-import io.qameta.allure.kotlin.Allure
 import io.qameta.allure.kotlin.Allure.step
 import io.qameta.allure.kotlin.Epic
 import io.qameta.allure.kotlin.Feature
@@ -11,7 +10,7 @@ import io.qameta.allure.kotlin.junit4.DisplayName
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import ru.tinkoff.fintech.meowle.PreferenceRule
+import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.screens.kaspresso.KaspressoSearchScreen
 
@@ -24,7 +23,7 @@ import ru.tinkoff.fintech.meowle.screens.kaspresso.KaspressoSearchScreen
 class AllureExampleTest {
 
     @get:Rule
-    val prefs = PreferenceRule()
+    val prefs = PreferenceRuleKaspresso()
 
     @get:Rule
     val activityScenarioRule = activityScenarioRule<MainActivity>()
