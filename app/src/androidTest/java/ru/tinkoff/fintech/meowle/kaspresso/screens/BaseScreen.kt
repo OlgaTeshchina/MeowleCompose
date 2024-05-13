@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.kaspressoScreens
+package ru.tinkoff.fintech.meowle.kaspresso.screens
 
 import com.kaspersky.kaspresso.screens.KScreen
 import ru.tinkoff.fintech.meowle.R

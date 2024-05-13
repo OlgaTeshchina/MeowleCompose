@@ -1,38 +1,38 @@
-package ru.tinkoff.fintech.meowle.composeTests
+package ru.tinkoff.fintech.meowle.kaspresso.tests
 
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.test.ext.junit.rules.activityScenarioRule
 import com.github.tomakehurst.wiremock.client.WireMock.equalToJson
 import com.github.tomakehurst.wiremock.junit.WireMockRule
+import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
+import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
+import ru.tinkoff.fintech.meowle.kaspresso.screens.DetailsScreen
+import ru.tinkoff.fintech.meowle.kaspresso.screens.RatingScreen
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.ok
 import com.github.tomakehurst.wiremock.client.WireMock.post
 import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import com.github.tomakehurst.wiremock.client.WireMock.verify
 import com.github.tomakehurst.wiremock.stubbing.Scenario
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeDetailsScreen
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeRatingScreen
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeTabBarElement
-import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.crutchVerify
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 
-class ComposeLikeTopCatTest {
+class LikeTopCatTest : TestCase() {
 
-    @get:Rule
-    val prefs = PreferenceRuleCompose()
-
-    @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    @get: Rule
+    val prefs = PreferenceRuleKaspresso()
 
     @get: Rule
     val mock = WireMockRule(5000)
 
+    @get: Rule
+    val activityScenarioRule = activityScenarioRule<MainActivity>()
+
     @Test
-    fun likeInTopCatDislike() {
+    fun checkLikeInTopDislike() = run {
         val checkCatLike = "Проверка метода с запросом, в котором передался лайк"
 
         stubFor(
@@ -83,20 +83,20 @@ class ComposeLikeTopCatTest {
                 )
         )
 
-        ComposeTabBarElement(composeTestRule)
-            .navigateToRatingTab()
-        with(ComposeRatingScreen(composeTestRule)) {
-            clickTopDislike()
-            checkFirstCatName("Звезда")
-            clickOnCat("Звезда")
+        with(RatingScreen()) {
+            clickTabRating()
+            clickTopDislikes()
+            checkCatName("Звезда", 0)
+            checkCatsListSize(10)
+            clickOnCat(0)
         }
 
-        with(ComposeDetailsScreen(composeTestRule)) {
+        with(DetailsScreen()) {
             clickOnLike()
-            checkLikes("1")
+            checkCatLikes("1")
         }
 
-        crutchVerify(1,
+        verify(
             postRequestedFor(urlEqualTo("/api/likes/cats/14016/likes"))
                 .withRequestBody(equalToJson(fileToString("like_request.json")))
         )

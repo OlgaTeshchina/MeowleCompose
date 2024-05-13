@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.composeScreens
+package ru.tinkoff.fintech.meowle.compose.screens
 
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithContentDescription

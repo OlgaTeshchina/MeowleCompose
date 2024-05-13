@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.kaspressoScreens
+package ru.tinkoff.fintech.meowle.kaspresso.screens
 
 import io.github.kakaocup.kakao.edit.KEditText
 import io.github.kakaocup.kakao.edit.KTextInputLayout

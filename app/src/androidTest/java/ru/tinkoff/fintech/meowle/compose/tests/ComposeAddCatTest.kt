@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.composeTests
+package ru.tinkoff.fintech.meowle.compose.tests
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import com.github.tomakehurst.wiremock.client.WireMock.equalToJson
@@ -14,8 +14,8 @@ import com.github.tomakehurst.wiremock.stubbing.Scenario
 import org.junit.Rule
 import org.junit.Test
 import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeAddCatScreen
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeTabBarElement
+import ru.tinkoff.fintech.meowle.compose.screens.ComposeAddCatScreen
+import ru.tinkoff.fintech.meowle.compose.screens.ComposeTabBarElement
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 

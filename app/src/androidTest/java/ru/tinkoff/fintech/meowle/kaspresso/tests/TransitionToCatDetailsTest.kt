@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.kaspressoTests
+package ru.tinkoff.fintech.meowle.kaspresso.tests
 
 import androidx.test.ext.junit.rules.activityScenarioRule
 import com.github.tomakehurst.wiremock.client.WireMock.get
@@ -14,8 +14,8 @@ import org.junit.Rule
 import org.junit.Test
 import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
-import ru.tinkoff.fintech.meowle.kaspressoScreens.DetailsScreen
-import ru.tinkoff.fintech.meowle.kaspressoScreens.SearchCatsScreen
+import ru.tinkoff.fintech.meowle.kaspresso.screens.DetailsScreen
+import ru.tinkoff.fintech.meowle.kaspresso.screens.SearchCatsScreen
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
 
 class TransitionToCatDetailsTest : TestCase() {

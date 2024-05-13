@@ -1,38 +1,40 @@
-package ru.tinkoff.fintech.meowle.composeTests
+package ru.tinkoff.fintech.meowle.kaspresso.tests
 
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.github.tomakehurst.wiremock.client.WireMock
+import androidx.test.ext.junit.rules.activityScenarioRule
 import com.github.tomakehurst.wiremock.client.WireMock.equalToJson
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.ok
+import com.github.tomakehurst.wiremock.client.WireMock.post
 import com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import com.github.tomakehurst.wiremock.client.WireMock.stubFor
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import com.github.tomakehurst.wiremock.client.WireMock.verify
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import com.github.tomakehurst.wiremock.stubbing.Scenario
+import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
-import ru.tinkoff.fintech.meowle.PreferenceRuleCompose
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeDetailsScreen
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeRatingScreen
-import ru.tinkoff.fintech.meowle.composeScreens.ComposeTabBarElement
+import ru.tinkoff.fintech.meowle.PreferenceRuleKaspresso
 import ru.tinkoff.fintech.meowle.presentation.MainActivity
-import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.crutchVerify
+import ru.tinkoff.fintech.meowle.kaspresso.screens.DetailsScreen
+import ru.tinkoff.fintech.meowle.kaspresso.screens.RatingScreen
 import ru.tinkoff.fintech.meowle.wiremock.WireMockHelper.fileToString
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
-class ComposeEditDescriptionTest {
+class EditCatDescriptionTest: TestCase() {
 
-    @get:Rule
-    val prefs = PreferenceRuleCompose()
-
-    @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    @get: Rule
+    val prefs = PreferenceRuleKaspresso()
 
     @get: Rule
     val mock = WireMockRule(5000)
 
+    @get: Rule
+    val activityScenarioRule = activityScenarioRule<MainActivity>()
+
     @Test
-    fun checkEditDescription() {
+    fun editDescriptionSuccess() = run {
         val checkEditCatDescription = "Проверка изменения описания в карточке котика"
 
         stubFor(
@@ -65,7 +67,7 @@ class ComposeEditDescriptionTest {
         )
 
         stubFor(
-            WireMock.post(urlEqualTo("/api/core/cats/save-description"))
+            post(urlEqualTo("/api/core/cats/save-description"))
                 .inScenario(checkEditCatDescription)
                 .whenScenarioStateIs("Step 3")
                 .willReturn(
@@ -73,23 +75,28 @@ class ComposeEditDescriptionTest {
                 )
         )
 
-        ComposeTabBarElement(composeTestRule)
-            .navigateToRatingTab()
-        with(ComposeRatingScreen(composeTestRule)) {
-            clickOnCat("Терех")
+        with(RatingScreen()) {
+            clickTabRating()
+            clickOnCat(4)
         }
 
-        with(ComposeDetailsScreen(composeTestRule)) {
-            clickChangBtn()
-            checkDescription("Котик, который любит покушать")
-            enterDescription("Самый голодный котик")
-            clickSaveBtn()
-            checkDescription("Самый голодный котик")
+        with(DetailsScreen()) {
+            checkCatDescription("Котик, который любит покушать")
+            clickEditBtn()
+            enterNewDescription("Самый голодный котик")
+
+            runBlocking { delay(200) }
+
+            clickConfirmBtn()
+            checkCatDescription("Самый голодный котик")
         }
 
-        crutchVerify(1,
+        verify(
             postRequestedFor(urlEqualTo("/api/core/cats/save-description"))
                 .withRequestBody(equalToJson(fileToString("description_request.json")))
         )
     }
 }
+
+
+

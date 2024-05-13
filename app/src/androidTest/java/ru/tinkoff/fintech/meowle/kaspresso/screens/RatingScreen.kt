@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.kaspressoScreens
+package ru.tinkoff.fintech.meowle.kaspresso.screens
 
 import android.view.View
 import io.github.kakaocup.kakao.edit.KEditText
@@ -45,4 +45,3 @@ class RatingScreen : BaseScreen() {
 private class CatCardRating(matcher: Matcher<View>) : KRecyclerItem<CatCardRating>(matcher) {
     val catName = KTextView(matcher) { withId(R.id.cat_name) }
 }
-

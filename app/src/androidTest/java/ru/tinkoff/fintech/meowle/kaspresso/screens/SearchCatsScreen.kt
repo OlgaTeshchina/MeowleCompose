@@ -1,4 +1,4 @@
-package ru.tinkoff.fintech.meowle.kaspressoScreens
+package ru.tinkoff.fintech.meowle.kaspresso.screens
 
 import android.view.View
 import io.github.kakaocup.kakao.edit.KEditText
@@ -41,4 +41,3 @@ class SearchCatsScreen : BaseScreen() {
 private class CatCard(matcher: Matcher<View>) : KRecyclerItem<CatCard>(matcher) {
     val catName = KTextView(matcher) { withId(R.id.cat_name) }
 }
-
